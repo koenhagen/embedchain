@@ -2,16 +2,6 @@ name: ci
 
 on:
   push:
-    branches: [main]
-    paths:
-      - 'embedchain/**'
-      - 'tests/**'
-      - 'examples/**'
-  pull_request:
-    paths:
-      - 'embedchain/**'
-      - 'tests/**'
-      - 'examples/**'
 
 jobs:
   build:
@@ -47,6 +37,6 @@ jobs:
         uses: koenhagen/measure-energy-action@v0.33
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          run: poetry run pytest --cov=$(PROJECT_NAME) --cov-report=xml
+          run: poetry run pytest
           count: 1
           file: coverage.xml
