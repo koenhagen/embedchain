@@ -44,10 +44,9 @@ jobs:
       - name: Lint with ruff
         run: make lint
       - name: Run tests and generate coverage report
-        run: make coverage
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
+        uses: koenhagen/measure-energy-action@v0.33
         with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          run: poetry run pytest --cov=$(PROJECT_NAME) --cov-report=xml
+          count: 1
           file: coverage.xml
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
